@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  fb-login-demo:
+    container_name: fb-login-demo
+    build: .
+    ports:
+      - 443:8080
+    environment:
+      - FACEBOOK_APP_ID=
+      - FACEBOOK_APP_SECRET=

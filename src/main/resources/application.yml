@@ -1,0 +1,12 @@
+server:
+  port: 8080
+  ssl:
+    key-store: keystore.p12
+    key-store-password: 123456
+    keyStoreType: PKCS12
+    keyAlias: tomcat
+
+facebook:
+  graph-url: https://graph.facebook.com/v5.0/
+  app-id: ${FACEBOOK_APP_ID}
+  app-secret: ${FACEBOOK_APP_SECRET}

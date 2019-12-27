@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<div th:if="${session.user eq null}">
+    <a th:href="${'/doFBLogin'}">
+        <img th:src="@{/resources/images/facebook-sign-in-button.png}"alt="login" th:width="250px" th:height="80px">
+    </a>
+</div>
+<div th:unless="${session.user eq null}">
+    <table style="border: 1px">
+        <thead>
+            <td>id</td>
+            <td>name</td>
+            <td>email</td>
+            <td>friends count</td>
+        </thead>
+        <tbody>
+            <td th:text="${session.user.id}"></td>
+            <td th:text="${session.user.name}"></td>
+            <td th:text="${session.user.email}"></td>
+            <td th:text="${session.user.friends.summary.totalCount}"></td>
+        </tbody>
+    </table>
+    <hr/>
+    <div>
+        以下操作，請打開瀏覽器的開發者模式觀察console
+    </div>
+    <div>
+        <button onclick="getMe()">Get Me</button>
+    </div>
+    <div>
+        <button onclick="debugToken()">Debug Token</button>
+    </div>
+
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.1.0.js"></script>
+<script>
+    function getMe() {
+        $.ajax({
+            url: "[[${'https://' + #request.getServerName() + ':' + #request.getServerPort() + '/me'}]]"
+        }).done(function (msg) {
+            console.log(msg)
+        })
+    }
+
+    function debugToken() {
+        $.ajax({
+            url: "[[${'https://' + #request.getServerName() + ':' + #request.getServerPort() + '/debugToken'}]]"
+        }).done(function (msg) {
+            console.log(msg)
+        })
+    }
+
+</script>
+</html>
