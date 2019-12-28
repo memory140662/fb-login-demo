@@ -44,7 +44,8 @@ public class MainController {
     public String doFBLogin(HttpServletRequest request) {
         val url = "https://www.facebook.com/v5.0/dialog/oauth?" +
                 "client_id=%s" +
-                "&redirect_uri=%s";
+                "&redirect_uri=%s" +
+                "&scope=email,user_friends";
         return "redirect:" + String.format(url, facebookAppId, getFBRedirectUrl(request));
     }
 

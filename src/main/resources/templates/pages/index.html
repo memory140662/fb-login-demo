@@ -13,7 +13,7 @@
     </a>
 </div>
 <div th:unless="${session.user eq null}">
-    <table style="border: 1px">
+    <table style="border: 1px black solid" border="1">
         <thead>
             <td>id</td>
             <td>name</td>
@@ -24,7 +24,14 @@
             <td th:text="${session.user.id}"></td>
             <td th:text="${session.user.name}"></td>
             <td th:text="${session.user.email}"></td>
-            <td th:text="${session.user.friends.summary.totalCount}"></td>
+            <td>
+                <div th:if="${session.user.friends ne null and session.user.friends.summary ne null}">
+                    <span th:text="${session.user.friends.summary.totalCount}"></span>
+                </div>
+                <div th:unless="${session.user.friends ne null and session.user.friends.summary ne null}">
+                    0
+                </div>
+            </td>
         </tbody>
     </table>
     <hr/>
